@@ -28,7 +28,7 @@ export default function () {
   return (
     <Section title="Examples" id="examples">
       <Tabs
-        ButtonsContainer="menu" // {Section} for custom component
+        // ButtonsContainer="menu" // {Section} for custom component
         buttons={Object.keys(EXAMPLES).map((concept, index) => (
           <TabButton
             key={index}
