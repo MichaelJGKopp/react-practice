@@ -2,6 +2,7 @@ import { EXAMPLES } from "../Data";
 import TabButton from "./TabButton";
 import { useState } from "react";
 import Section from "./Section";
+import Tabs from "./Tabs";
 
 export default function () {
   const [selectedTopic, setSelectedTopic] = useState();
@@ -26,8 +27,9 @@ export default function () {
   }
   return (
     <Section title="Examples" id="examples">
-      <menu>
-        {Object.keys(EXAMPLES).map((concept, index) => (
+      <Tabs
+        ButtonsContainer="menu"
+        buttons={Object.keys(EXAMPLES).map((concept, index) => (
           <TabButton
             key={index}
             isActive={selectedTopic === concept}
@@ -36,11 +38,11 @@ export default function () {
             {concept}
           </TabButton>
         ))}
-      </menu>
-      {/* Conditional Rendering with truthy/falsy && or ternary */}
-      <div id="tab-content">
-        {tabContent}
-        {/*{!selectedTopic && tabContent}
+      >
+        {/* Conditional Rendering with truthy/falsy && or ternary */}
+        <div id="tab-content">
+          {tabContent}
+          {/*{!selectedTopic && tabContent}
                     {selectedTopic ? (
                       <div>
                         <h3>{EXAMPLES[selectedTopic].title}</h3>
@@ -50,7 +52,8 @@ export default function () {
                         </pre>
                       </div>
                     ) : null}*/}
-      </div>
+        </div>
+      </Tabs>
     </Section>
   );
 }
