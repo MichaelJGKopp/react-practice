@@ -40,7 +40,7 @@ export default function GameBoard({
           <ol>
             {row.map((playerSymbol, colIndex) => (
               <li key={colIndex}>
-                <button onClick={() => onSelectTile(rowIndex, colIndex)}>
+                <button onClick={() => onSelectTile(rowIndex, colIndex)} disabled={playerSymbol !== null}>
                   {playerSymbol}
                 </button>
               </li>
