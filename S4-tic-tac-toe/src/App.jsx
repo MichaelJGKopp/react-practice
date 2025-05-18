@@ -6,6 +6,21 @@ import GameOver from "./components/GameOver";
 import { determineWinner } from "./determineWinner";
 
 function App() {
+  // PLAYERS
+  const [players, setPlayers] = useState({
+    X: "Player 1",
+    O: "Player 2",
+  });
+
+  function handlePlayerNameChange(symbol, newName) {
+    setPlayers((prevPlayers) => {
+      return {
+        ...prevPlayers,
+        [symbol]: newName,
+      };
+    });
+  }
+
   const [gameTurns, setGameTurns] = useState([]);
   // const [activePlayer, setActivePlayer] = useState("X");
 
@@ -32,6 +47,7 @@ function App() {
     });
   }
 
+  // reset game state
   function handlePlayAgain() {
     setGameTurns([]);
   }
@@ -40,10 +56,26 @@ function App() {
     <main>
       <div id="game-container">
         <ol id="players" className="highlight-player">
-          <Player name="Player 1" symbol="X" isActive={activePlayer === "X"} />
-          <Player name="Player 2" symbol="O" isActive={activePlayer === "O"} />
+          <Player
+            name={players.X}
+            symbol="X"
+            isActive={activePlayer === "X"}
+            onSave={handlePlayerNameChange}
+          />
+          <Player
+            name={players.O}
+            symbol="O"
+            isActive={activePlayer === "O"}
+            onSave={handlePlayerNameChange}
+          />
         </ol>
-        {winner || draw ? <GameOver winner={winner} onPlayAgain={handlePlayAgain} /> : null}
+        {winner || draw ? (
+          <GameOver
+            winner={winner}
+            onPlayAgain={handlePlayAgain}
+            players={players}
+          />
+        ) : null}
         <GameBoard
           activePlayer={activePlayer}
           onSelectTile={handleSelectTile}
