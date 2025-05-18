@@ -31,12 +31,13 @@ body {
 
 header {
   text-align: center;
+  margin: 3rem auto 1rem auto;
 }
 
 header img {
   width: 8rem;
   object-fit: contain;
-  margin: 3rem auto 1rem auto;
+  /* margin: 3rem auto 1rem auto; */
   filter: drop-shadow(0 0 8px rgba(0, 0, 0, 0.4));
 }
 
