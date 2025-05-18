@@ -5,12 +5,18 @@ import { useState } from "react";
 
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
-  const [activePlayer, setActivePlayer] = useState("X");
+  // const [activePlayer, setActivePlayer] = useState("X");
+
+  // derive the activePlayer state from gameTurns
+    function deriveActivePlayer(gameTurns) {
+    return (gameTurns.length > 0 && gameTurns[0]?.player === "X") ? "O" : "X";
+  }
+  
+  let activePlayer = deriveActivePlayer(gameTurns);
 
   function handleSelectTile(rowIndex, colIndex) {
-    setActivePlayer((prev) => (prev === "X" ? "O" : "X"));
     setGameTurns((prevTurns) => {
-      const currentPlayer = (prevTurns.length > 0 && prevTurns[0].player === "X") ? "O" : "X";  // avoid mixing two different states
+      const currentPlayer = deriveActivePlayer(prevTurns);
       const updatedTurns = [{square: {row: rowIndex, col: colIndex}, player: currentPlayer}, ...prevTurns];
       return updatedTurns;
     });
