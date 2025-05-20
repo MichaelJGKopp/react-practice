@@ -5,12 +5,14 @@ import { useState } from "react";
 import GameOver from "./components/GameOver";
 import { determineWinner } from "./determineWinner";
 
+const PLAYERS = {
+  X: "Player 1",
+  O: "Player 2",
+};
+
 function App() {
   // PLAYERS
-  const [players, setPlayers] = useState({
-    X: "Player 1",
-    O: "Player 2",
-  });
+  const [players, setPlayers] = useState(PLAYERS);
 
   function handlePlayerNameChange(symbol, newName) {
     setPlayers((prevPlayers) => {
