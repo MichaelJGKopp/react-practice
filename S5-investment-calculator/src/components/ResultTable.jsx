@@ -18,20 +18,21 @@ export default function ResultTable({ input }) {
         </tr>
       </thead>
       <tbody id="results-body">
-        {results.map((values, index) => (
-          <tr key={index}>
-            <td>{values["year"]}</td>
-            <td>{formatter.format(values["valueEndOfYear"])}</td>
-            <td>{formatter.format(values["interest"])}</td>
-            <td>{formatter.format((totalInterest += values["interest"]))}</td>
-            <td>
-              {formatter.format(
-                input.initialInvestment +
-                  values["year"] * values["annualInvestment"]
-              )}
-            </td>
-          </tr>
-        ))}
+        {results.map((values, index) => {
+          totalInterest += values.interest;
+          const investedCapital =
+            input.initialInvestment + values.year * values.annualInvestment;
+            
+          return (
+            <tr key={index}>
+              <td>{values.year}</td>
+              <td>{formatter.format(values.valueEndOfYear)}</td>
+              <td>{formatter.format(values.interest)}</td>
+              <td>{formatter.format(totalInterest)}</td>
+              <td>{formatter.format(investedCapital)}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

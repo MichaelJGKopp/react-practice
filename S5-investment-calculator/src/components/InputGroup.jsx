@@ -9,7 +9,7 @@ export default function InputGroup({ input, setInput }) {
   };
 
   return (
-    <div id="user-input">
+    <section id="user-input">
       <div className="input-group">
         <Input 
           id="initialInvestment" 
@@ -40,6 +40,6 @@ export default function InputGroup({ input, setInput }) {
           errorMessage="Duration must be at least 1 year."
         />
       </div>
-    </div>
+    </section>
   );
 }

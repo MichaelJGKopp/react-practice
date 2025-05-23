@@ -12,13 +12,16 @@ function App() {
   });
 
   return (
-    <div className="App">
+    <>
       <Header />
       <InputGroup input={input} setInput={setInput} />
-      <ResultTable input={input} />
-    </div>
+      {input.duration > 0 ? (
+        <ResultTable input={input} />
+      ) : (
+        <p className="center" style={{ color: "#ff9800" }}>Please enter valid inputs.</p>
+      )}
+    </>
   );
 }
 
 export default App;
-
