@@ -36,6 +36,8 @@ export default function InputGroup({ input, setInput }) {
           label="Duration"
           value={input.duration}
           onChange={handleChange}
+          invalid={input.duration < 1}
+          errorMessage="Duration must be at least 1 year."
         />
       </div>
     </div>
