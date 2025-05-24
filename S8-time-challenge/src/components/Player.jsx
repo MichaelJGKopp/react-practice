@@ -15,8 +15,9 @@ export default function Player() {
     <section id="player">
       <h2>Welcome {enteredPlayerName ?? "unknown entity"}</h2>
       <p>
-        <input  // rendered here the first time, 
-        // ref playerName doesn't exist before in 1st render cycle
+        {/* rendered here the first time, 
+        ref playerName doesn't exist before this in 1st render cycle */}
+        <input
           ref={playerName}  // !!
           type="text"
         />
