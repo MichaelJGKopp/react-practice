@@ -1,4 +1,5 @@
 import { useState, useRef } from "react";
+import ResultModal from "./ResultModal";
 
 // let timer; // doesn't work, shared across all instances of the component
 
@@ -21,20 +22,22 @@ export default function TimerChallenge({ title, targetTime }) {
   }
 
   return (
-    <section className="challenge">
-      <h2>{title}</h2>
-      {timerExpired && <p>"You lost!"</p>}
-      <p className="challenge-time">
-        {targetTime} seconds{targetTime > 1 ? "s" : ""}
-      </p>
-      <p>
-        <button onClick={timerStarted ? handleStop : handleStart}>
-          {timerStarted ? "Stop Challenge" : "Start Challenge"}
-        </button>
-      </p>
-      <p className={timerStarted ? "active" : undefined}>
-        {timerStarted ? "Time is running..." : "Timer inactive"}
-      </p>
-    </section>
+    <>
+      {timerExpired && <ResultModal result="lost" targetTime={targetTime} />}
+      <section className="challenge">
+        <h2>{title}</h2>
+        <p className="challenge-time">
+          {targetTime} seconds{targetTime > 1 ? "s" : ""}
+        </p>
+        <p>
+          <button onClick={timerStarted ? handleStop : handleStart}>
+            {timerStarted ? "Stop Challenge" : "Start Challenge"}
+          </button>
+        </p>
+        <p className={timerStarted ? "active" : undefined}>
+          {timerStarted ? "Time is running..." : "Timer inactive"}
+        </p>
+      </section>
+    </>
   );
 }
