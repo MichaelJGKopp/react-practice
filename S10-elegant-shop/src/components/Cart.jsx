@@ -1,4 +1,10 @@
-export default function Cart({ items, onUpdateItemQuantity }) {
+import { useContext } from "react";
+
+import { CartContext } from "../store/shopping-cart-context";
+
+export default function Cart({ onUpdateItemQuantity }) {
+  const {items} = useContext(CartContext);  // can use useContext but less flexible or use hook even in if block - needs React v19
+
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
