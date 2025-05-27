@@ -2,8 +2,8 @@ import { useContext } from "react";
 
 import { CartContext } from "../store/shopping-cart-context";
 
-export default function Cart({ onUpdateItemQuantity }) {
-  const {items} = useContext(CartContext);  // can use useContext but less flexible or use hook even in if block - needs React v19
+export default function Cart() {
+  const {items, updateCartItemQuantity} = useContext(CartContext);  // React 19 can use "use" hook instead, even in if block; useContext also rerenders
 
   const totalPrice = items.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -26,11 +26,11 @@ export default function Cart({ onUpdateItemQuantity }) {
                   <span> ({formattedPrice})</span>
                 </div>
                 <div className="cart-item-actions">
-                  <button onClick={() => onUpdateItemQuantity(item.id, -1)}>
+                  <button onClick={() => updateCartItemQuantity(item.id, -1)}>
                     -
                   </button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => onUpdateItemQuantity(item.id, 1)}>
+                  <button onClick={() => updateCartItemQuantity(item.id, 1)}>
                     +
                   </button>
                 </div>
