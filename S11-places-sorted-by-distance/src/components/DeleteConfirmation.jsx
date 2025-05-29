@@ -1,3 +1,7 @@
+import ProgressBar from "./ProgressBar";
+
+const TIMER = 3000; // 3 seconds in milliseconds
+
 export default function DeleteConfirmation({ onConfirm, onCancel }) {
   return (
     <div id="delete-confirmation">
@@ -11,6 +15,7 @@ export default function DeleteConfirmation({ onConfirm, onCancel }) {
           Yes
         </button>
       </div>
+      <ProgressBar timer={TIMER} onConfirm={onConfirm} />
     </div>
   );
 }
